@@ -1,6 +1,43 @@
-import react, { useState } from 'react';
+import react, { useState, useEffect } from 'react';
+// import Example from '../dropdownInput/index';
+import LinkInput from '../linkInput/inputLink'
+import { connect } from 'react-redux';
+import BodyParams from '../paramsBody/params';
 
-const Body = () => {
+const Body = (props) => {
+  const [res_data, setResData] = useState(['q'])
+
+  useEffect(() => {
+    setResData(props.data)
+    console.log("DADA", props.data);
+  }, [props.data])
+
+  const PrettyPrintJson = ({ data }) => (
+    <div className='p-3 pl-4'>
+      <pre className='json_formate_data' >
+        {JSON.stringify(data, null, 4)}
+      </pre>
+    </div>
+  );
+
+  const ex = [
+    {
+      body: "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium",
+      email: "Eliseo@gardner.biz",
+      id: 1,
+      name: "id labore ex et quam laborum",
+      postId: 1
+    },
+    {
+      body: "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium",
+      email: "Eliseo@gardner.biz",
+      id: 1,
+      name: "id labore ex et quam laborum",
+      postId: 1
+    }
+  ]
+
+  const example = [{ a: "apple", b: "beetle", c: "abi" }, { a: "apple", b: "beetle", c: "abi" }];
 
   return (
     <div className='container h-100 d-flex flex-column p-0 m-0'>
@@ -73,102 +110,9 @@ const Body = () => {
           </div>
           <div className='body_box_mid w-100 d-flex flex-column'>
             <div className='body_box_mid_1 w-100 mb-2'>
-              <div className='d-flex justify-content-between w-100 '>
-                <div className='body_box_mid_1_box d-flex w-100'>
-                  <div className='body_box_mid_1_select w-25 d-flex justify-content-between align-items-center'>
-                    <p className='p-0 m-0'>
-                      GET
-                    </p>
-                    <span>
-                      <i class="IconWrapper__IconContainer-r96cto-0 gJkKrF dropdown-caret" title=""><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.00004 9.29294L4.35359 5.64649L3.64648 6.3536L8.00004 10.7072L12.3536 6.3536L11.6465 5.64649L8.00004 9.29294Z" fill="#6B6B6B"></path></svg></i>
-                    </span>
-                  </div>
-                  <div className='body_box_mid_1_input w-100 mr-2'>
-                    <input className='w-100' value='https://jsonplaceholder.typicode.com/posts/1/comments' />
-                  </div>
-                </div>
-                <div className='body_box_mid_1_button mr-1'>
-                  <button className='px-2'>
-                    <div className='d-flex justify-content-between align-items-center'>
-                      <span className='body_box_mid_1_button_send py-1'>
-                        Send
-                      </span>
-                      <span className='body_box_mid_1_button_send_icon p-0 m-0 w-100 h-100 ml-3 pl-2'>
-                        <i class="IconWrapper__IconContainer-r96cto-0 gJkKrF dropdown-caret" title=""><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.00004 9.29294L4.35359 5.64649L3.64648 6.3536L8.00004 10.7072L12.3536 6.3536L11.6465 5.64649L8.00004 9.29294Z" fill="#fff"></path></svg></i>
-                      </span>
-                    </div>
-                  </button>
-                </div>
-              </div>
+              <LinkInput />
             </div>
-            <div className='body_box_mid_2 w-100 d-flex justify-content-between mb-3'>
-
-              <div className='body_box_mid_2_tabs d-flex'>
-                <p className='body_box_mid_2_tabs_item'>
-                  <span className='text_params'>Params</span>
-                </p>
-                <p className='body_box_mid_2_tabs_item'>
-                  <span>Authorization</span>
-                </p>
-                <p className='body_box_mid_2_tabs_item'>
-                  <span>Headers</span>
-                </p>
-                <p className='body_box_mid_2_tabs_item'>
-                  <span>Body</span>
-                </p>
-                <p className='body_box_mid_2_tabs_item'>
-                  <span>Pre-request Script</span>
-                </p>
-                <p className='body_box_mid_2_tabs_item'>
-                  <span>Tests</span>
-                </p>
-                <p className='body_box_mid_2_tabs_item'>
-                  <span>Settings</span>
-                </p>
-              </div>
-
-              <div className='body_box_mid_2_cokkie'>
-                <p className='body_box_mid_2_tabs_item'>
-                  <span>Cookies</span>
-                </p>
-              </div>
-
-            </div>
-
-            <div className='body_box_mid_3 d-flex justify-content-between'>
-              <div className=''>
-                <p className='p-0 mb-2'>Query Params</p>
-              </div>
-              <div></div>
-            </div>
-            <div className='body_box_mid_4'>
-              <table className='body_box_mid_4_table w-100'>
-                <tr>
-                  <th></th>
-                  <th className='body_box_mid_4_table_head'>KEY</th>
-                  <th className='body_box_mid_4_table_head'>VALUE</th>
-                  <th className='body_box_mid_4_table_head '>
-                    <p className='m-0 p-0 w-100'>
-                      DESCRIPTION
-                    </p>
-                    {/* <div className='d-flex'>
-                      <span>
-                        <i class="IconWrapper__IconContainer-r96cto-0 gJkKrF key-value-column-toggle--button" title=""><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 8C1 6.89543 1.89543 6 3 6C4.10457 6 5 6.89543 5 8C5 9.10457 4.10457 10 3 10C1.89543 10 1 9.10457 1 8ZM3 7C2.44772 7 2 7.44772 2 8C2 8.55228 2.44772 9 3 9C3.55228 9 4 8.55228 4 8C4 7.44772 3.55228 7 3 7Z" fill="#6B6B6B"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8C6 6.89543 6.89543 6 8 6C9.10457 6 10 6.89543 10 8C10 9.10457 9.10457 10 8 10C6.89543 10 6 9.10457 6 8ZM8 7C7.44772 7 7 7.44772 7 8C7 8.55228 7.44772 9 8 9C8.55228 9 9 8.55228 9 8C9 7.44772 8.55228 7 8 7Z" fill="#6B6B6B"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M13 6C11.8954 6 11 6.89543 11 8C11 9.10457 11.8954 10 13 10C14.1046 10 15 9.10457 15 8C15 6.89543 14.1046 6 13 6ZM12 8C12 7.44772 12.4477 7 13 7C13.5523 7 14 7.44772 14 8C14 8.55228 13.5523 9 13 9C12.4477 9 12 8.55228 12 8Z" fill="#6B6B6B"></path></svg></i>
-                      </span>
-                      <p className='p-0 m-0'>Bulk Edit</p>
-                    </div> */}
-                  </th>
-                </tr>
-                <tr className='border border-right-light'>
-                  <td className='border border-left-0 border border-right-0'>  </td>
-                  <td>Key</td>
-                  <td>Value</td>
-                  <td className=''>Description</td>
-                </tr>
-                <tr>
-                </tr>
-              </table>
-            </div>
+            <BodyParams />
           </div>
           <div className='body_box_lower w-100 d-flex flex-column'>
 
@@ -221,7 +165,7 @@ const Body = () => {
                   <p className='body_box_lower_2_tabs_item p-0 m-0 px-3 rounded-right'>
                     <span>Visualize</span>
                   </p>
-                  
+
                   <p className='body_box_lower_2_tabs_item_text rounded-right rounded-left'>
                     <span className='mr-2'>Text</span>
                     <span>
@@ -256,10 +200,15 @@ const Body = () => {
             </div>
 
 
-            {/* <div class="response-viewer-empty__onboarding">
+            <div class="response-viewer">
+              <p>
+                {/* {
+                res_data.length != 0 ? "Arrar is" : "Not Array" 
+              } */}
+              </p>
 
-              <div class="response-viewer-empty__onboarding__heading">Enter the URL and click Send to get a response</div>
-            </div> */}
+              <PrettyPrintJson className='json_formate_data' data={res_data} />
+            </div>
           </div>
         </div>
         <div className='body_box_2'>
@@ -279,4 +228,10 @@ const Body = () => {
   )
 }
 
-export default Body;
+const mapStateToProps = (state) => {
+  return {
+    data: state.data
+  }
+}
+
+export default connect(mapStateToProps)(Body);
