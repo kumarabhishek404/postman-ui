@@ -3,22 +3,16 @@ import react, { useState, useEffect } from 'react';
 import LinkInput from '../linkInput/inputLink'
 import { connect } from 'react-redux';
 import BodyParams from '../paramsBody/params';
+import ResponseTabs from '../responseTabs/responsetabs';
 
 const Body = (props) => {
-  const [res_data, setResData] = useState(['q'])
+  
 
   useEffect(() => {
-    setResData(props.data)
+    // setResData(props.data)
     console.log("DADA", props.data);
   }, [props.data])
 
-  const PrettyPrintJson = ({ data }) => (
-    <div className='p-3 pl-4'>
-      <pre className='json_formate_data' >
-        {JSON.stringify(data, null, 4)}
-      </pre>
-    </div>
-  );
 
   const ex = [
     {
@@ -119,7 +113,8 @@ const Body = (props) => {
             <div className='body_box_lower_1 w-100 d-flex justify-content-between'>
 
               <div className='body_box_lower_1_tabs d-flex'>
-                <p className='body_box_lower_1_tabs_item text_body'>
+                <ResponseTabs />
+                {/* <p className='body_box_lower_1_tabs_item text_body'>
                   <span>Body</span>
                 </p>
                 <p className='body_box_lower_1_tabs_item'>
@@ -130,10 +125,10 @@ const Body = (props) => {
                 </p>
                 <p className='body_box_lower_1_tabs_item'>
                   <span>Test Results</span>
-                </p>
+                </p> */}
               </div>
 
-              <div className='body_box_lower_1_response d-flex align-items-center'>
+              <div className='body_box_lower_1_response d-flex mt-3'>
                 <div className='body_box_lower_1_response_text d-flex'>
                   <p>Status:<span> 200 OK</span></p>
                   <p>Time:<span> 414 ms</span></p>
@@ -149,7 +144,7 @@ const Body = (props) => {
               </div>
             </div>
 
-            <div className='body_box_lower_2 pl-2'>
+            {/* <div className='body_box_lower_2 pl-2'>
               <div className='body_box_lower_2 w-100 mt-2 d-flex justify-content-between'>
 
                 <div className='body_box_lower_2_tabs d-flex'>
@@ -198,17 +193,9 @@ const Body = (props) => {
               </div>
 
             </div>
+ */}
 
 
-            <div class="response-viewer">
-              <p>
-                {/* {
-                res_data.length != 0 ? "Arrar is" : "Not Array" 
-              } */}
-              </p>
-
-              <PrettyPrintJson className='json_formate_data' data={res_data} />
-            </div>
           </div>
         </div>
         <div className='body_box_2'>

@@ -4,31 +4,46 @@ import { connect } from 'react-redux';
 
 const InputLink = (props) => {
   const [method, setMethod] = useState('GET')
-  const [link, setLink] = useState('https://jsonplaceholder.typicode.com/posts/1/comments')
+  const [link, setLink] = useState('')
   const [response, setResponse] = useState([])
 
   useEffect(() => {
     console.log("Data", props.data);
   })
 
+  const payload_data = { "name": "test", "salary": "123", "age": "23" }
+
   const makeGetRequest = () => {
-    console.log(method);
+    console.log(method, payload_data, link);
     switch (method) {
       case "GET":
-        return axios.get(link)
-        .then(res => {
-          console.log("Response-", res.data)
-          props.getData(res.data)
-          setResponse(res.data)
+        return axios.get(link, {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+          },
         })
-        .catch(err => {
-          console.log("Error--", err);
-        })
-    
+          .then(res => {
+            console.log("Response-", res.data)
+            props.getData(res.data)
+            setResponse(res.data)
+          })
+          .catch(err => {
+            console.log("Error--", err);
+          })
+
       case 'POST':
-        return console.log("This is post method");
+        return axios.post(link, payload_data)
+          .then((res) => {
+            console.log("Response", response);
+            props.getData(res.data)
+            setResponse(res.data)
+          })
+          .catch((err) => {
+            console.log("Error", err);
+          })
     }
-    
+
   }
 
   const handleMethodChange = (e) => {
@@ -78,7 +93,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getData: (res) => dispatch({type: 'GETRequest', payload: res})
+    getData: (res) => dispatch({ type: 'GETRequest', payload: res })
   }
 }
 
