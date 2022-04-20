@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/postman-ui/static/css/main.523f3e48.css",
-    "main.js": "/postman-ui/static/js/main.7d5b54d7.js",
+    "main.css": "/postman-ui/static/css/main.8e26a5ca.css",
+    "main.js": "/postman-ui/static/js/main.c641e81c.js",
     "static/js/787.30de5b91.chunk.js": "/postman-ui/static/js/787.30de5b91.chunk.js",
     "static/media/logo.svg": "/postman-ui/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/postman-ui/index.html",
-    "main.523f3e48.css.map": "/postman-ui/static/css/main.523f3e48.css.map",
-    "main.7d5b54d7.js.map": "/postman-ui/static/js/main.7d5b54d7.js.map",
+    "main.8e26a5ca.css.map": "/postman-ui/static/css/main.8e26a5ca.css.map",
+    "main.c641e81c.js.map": "/postman-ui/static/js/main.c641e81c.js.map",
     "787.30de5b91.chunk.js.map": "/postman-ui/static/js/787.30de5b91.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.523f3e48.css",
-    "static/js/main.7d5b54d7.js"
+    "static/css/main.8e26a5ca.css",
+    "static/js/main.c641e81c.js"
   ]
 }
