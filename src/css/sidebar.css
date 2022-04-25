@@ -105,10 +105,12 @@
 
 .sidebar_container_2_history p {
     font-size: 10px;
+    cursor: pointer;
 }
 
 .sidebar_container_2_history_link {
     overflow: hidden;
+    width: 230px;
 }
 
 .active_history {
@@ -233,19 +235,27 @@
     margin: 0 10px;
     font-weight: 500;
 }
-
+.body_container_1_box_1_1:first-child{
+    border-left: none;
+}
 .body_container_1_box_1_1 {
     width: 100px;
     overflow: hidden;
+    border-left: 1px solid #d3cfcf;
+    padding-left: 7px;
+    /* margin: 7px 0; */
     /* border-top: 2px solid red; */
 }
 
 .body_container_1_box_1_2 {
     border-left: 1px solid #d3cfcf;
+    margin-left: 7px;
 }
-
-.body_container_1_box_1_1 p {
+.body_container_1_box_1_1_p {
     width: 20px;
+}
+.body_container_1_box_1_1 p {
+    /* width: 20px; */
     font-size: 8px;
     font-style: italic;
 }
@@ -457,6 +467,20 @@ td {
 }
 /* API BODY */
 
+/* New Tab */
+.new_tab_icon, .body_container_1_box_1_1_delete {
+    cursor: pointer;
+}
+/* New Tab */
+
+/* Param Inputs */
+.paramKey_input {
+    background-color: #fff;
+    border: none;
+}
+.paramKey_input:focus {
+    outline: 1px solid #d3cfcf;
+}
 /* Body */
 
 

@@ -4,45 +4,63 @@ import LinkInput from '../linkInput/inputLink'
 import { connect } from 'react-redux';
 import BodyParams from '../paramsBody/params';
 import ResponseTabs from '../responseTabs/responsetabs';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Body = (props) => {
-  
+  const [historyTab, setHistoryTab] = useState([{
+    method: 'GET',
+    link: 'https://jsonplaceholder.typicode.com/posts/1/comments'
+  },
+  {
+    method: 'POST',
+    link: 'https://jsonplaceholder.typicode.com/posts/1/comments'
+  }])
 
   useEffect(() => {
     // setResData(props.data)
-    console.log("DADA", props.data);
-  }, [props.data])
+    console.log("historyTab", historyTab);
+  }, [historyTab])
 
-
-  const ex = [
-    {
-      body: "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium",
-      email: "Eliseo@gardner.biz",
-      id: 1,
-      name: "id labore ex et quam laborum",
-      postId: 1
-    },
-    {
-      body: "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium",
-      email: "Eliseo@gardner.biz",
-      id: 1,
-      name: "id labore ex et quam laborum",
-      postId: 1
+  const handleNewTab = () => {
+    console.log("New tab created");
+    const new_record = {
+      method: 'GET',
+      link: 'https://jsonplaceholder.typicode.com/posts/1/comments'
     }
-  ]
 
-  const example = [{ a: "apple", b: "beetle", c: "abi" }, { a: "apple", b: "beetle", c: "abi" }];
+    setHistoryTab(historyTab => [...historyTab, new_record])
+  }
+
+  const handleDeleteTab = (index) => {
+    console.log("Index - ", index)
+    historyTab.splice(index,1);
+    // setHistoryTab(...historyTab)
+    // setHistoryTab(historyTab => [...historyTab, new_array])
+    console.log('new_array', historyTab);
+  }
 
   return (
     <div className='container h-100 d-flex flex-column p-0 m-0'>
       <div className='body_container_1 w-100 d-flex justify-content-between'>
         <div className='body_container_1_box_1 w-75 d-flex align-items-center'>
-          <div className='body_container_1_box_1_1 d-flex mr-1'>
-            <p className='p-0 m-0 text-success'>GET</p>
-            <p className='p-0 m-0'>https://jsonplaceholder.typicode.com/posts/1/comments</p>
-          </div>
+          {
+            historyTab.map((history, index) => {
+              return (
+                <>
+                  <div className='body_container_1_box_1_1 d-flex mx-1'>
+                    <p className='body_container_1_box_1_1_p p-0 m-0 text-success'>{history.method}</p>
+                    <p className='p-0 m-0 ml-1'>{history.link}</p>
+                  </div>
+                  <p className='body_container_1_box_1_1_delete m-0 p-0 d-flex justify-content-center align-items-center' onClick={() => handleDeleteTab(index)}>
+                    <CloseIcon sx={{  fontSize: '10px', marginLeft: '10px' }} />
+                  </p>
+                </>
+              )
+            })
+          }
+
           <div className='body_container_1_box_1_2 d-flex align-items-center'>
-            <p className='m-0 p-0 mx-3'>
+            <p className='m-0 p-0 mx-3 new_tab_icon' onClick={handleNewTab}>
               <span>
                 <i color="content-color-primary" class="IconWrapper__IconContainer-r96cto-0 gOCaXE requester-tab-create-icon pm-icon pm-icon-normal" title=""><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 7.5V2H7.5V7.5H2V8.5H7.5V14H8.5V8.5H14V7.5H8.5Z" fill="#505050"></path></svg></i>
               </span>

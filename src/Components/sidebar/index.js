@@ -1,5 +1,6 @@
 import react, { useState } from 'react';
 import '../../css/sidebar.css'
+import SidebarInput from '../sidebarInput/sidebarInput';
 
 const Sidebar = () => {
 
@@ -38,7 +39,7 @@ const Sidebar = () => {
             </div>
             {/* </div> */}
             <div className='sidebar_container_2 w-100 d-flex pt-1'>
-                <div className='sidebar_container_2_box w-25'>
+                {/* <div className='sidebar_container_2_box w-25'>
                     <div class="list-container">
                         <div class="requester-left-sidebar__header">
                             <span class="tabs__collection">
@@ -62,6 +63,7 @@ const Sidebar = () => {
                             <span class="tabs__environment">
                                 <i class="IconWrapper__IconContainer-r96cto-0 gJkKrF requester-left-sidebar__header-icons" title="">
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 2.5C1 1.67157 1.67157 1 2.5 1H13.5C14.3284 1 15 1.67157 15 2.5V10H14V2.5C14 2.22386 13.7761 2 13.5 2H2.5C2.22386 2 2 2.22386 2 2.5V13.5C2 13.7761 2.22386 14 2.5 14H10V15H2.5C1.67157 15 1 14.3284 1 13.5V2.5Z" fill="#6B6B6B"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M5 6.5C5 6.22386 5.22386 6 5.5 6H10.5C10.7761 6 11 6.22386 11 6.5V9.5C11 9.77614 10.7761 10 10.5 10H5.5C5.22386 10 5 9.77614 5 9.5V6.5ZM6 7V9H10V7H6Z" fill="#6B6B6B"></path><path d="M15 12H12V15H15V12Z" fill="#6B6B6B"></path></svg>
+                                
                                 </i>
                             </span>
                             <div class="sidebar__header_tab_title">Environments</div>
@@ -103,77 +105,11 @@ const Sidebar = () => {
                             <div class="active sidebar__header_tab_title">History</div>
                         </div>
                     </div>
-                </div>
+                </div> */}
+                
+                <SidebarInput />
 
-                <div className='sidebar_container_2_container w-75'>
-                    <div className='d-flex ml-2'>
-                        <div class="input-icons">
-                            <i class="IconWrapper__IconContainer-r96cto-0 gJkKrF input-search-group__search-glass-icon pm-icon pm-icon-normal pl-2" title=""><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 2H1V3H15V2Z" fill="#6B6B6B"></path><path d="M13.25 5.5H2.75V6.5H13.25V5.5Z" fill="#6B6B6B"></path><path d="M4.5 9.5H11.5V10.5H4.5V9.5Z" fill="#6B6B6B"></path><path d="M9.75 13H6.25V14H9.75V13Z" fill="#6B6B6B"></path></svg></i>
-                            <input class="input-field sidebar_container_2_input" type="text" />
-                        </div>
-                        <p className='mx-2'>
-                            <span>
-                                <i class="IconWrapper__IconContainer-r96cto-0 gJkKrF dropdown-action-button pm-icon pm-icon-normal" title=""><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 8C1 6.89543 1.89543 6 3 6C4.10457 6 5 6.89543 5 8C5 9.10457 4.10457 10 3 10C1.89543 10 1 9.10457 1 8ZM3 7C2.44772 7 2 7.44772 2 8C2 8.55228 2.44772 9 3 9C3.55228 9 4 8.55228 4 8C4 7.44772 3.55228 7 3 7Z" fill="#6B6B6B"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M6 8C6 6.89543 6.89543 6 8 6C9.10457 6 10 6.89543 10 8C10 9.10457 9.10457 10 8 10C6.89543 10 6 9.10457 6 8ZM8 7C7.44772 7 7 7.44772 7 8C7 8.55228 7.44772 9 8 9C8.55228 9 9 8.55228 9 8C9 7.44772 8.55228 7 8 7Z" fill="#6B6B6B"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M13 6C11.8954 6 11 6.89543 11 8C11 9.10457 11.8954 10 13 10C14.1046 10 15 9.10457 15 8C15 6.89543 14.1046 6 13 6ZM12 8C12 7.44772 12.4477 7 13 7C13.5523 7 14 7.44772 14 8C14 8.55228 13.5523 9 13 9C12.4477 9 12 8.55228 12 8Z" fill="#6B6B6B"></path></svg></i>
-                            </span>
-                        </p>
-                    </div>
-                    <div>
-                        <div className='d-flex align-items-center'>
-                            <span className='mx-2'>
-                                <i class="IconWrapper__IconContainer-r96cto-0 gJkKrF dropdown-caret" title=""><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.00004 9.29294L4.35359 5.64649L3.64648 6.3536L8.00004 10.7072L12.3536 6.3536L11.6465 5.64649L8.00004 9.29294Z" fill="#6B6B6B"></path></svg></i>
-                            </span>
-                            <p className='sidebar_right_text p-0 m-0'>Yesterday</p>
-                        </div>
-                        <div className='sidebar_container_2_history d-flex ml-4 mt-2'>
-                            <p className='m-0 p-0 mr-1 text-success'>
-                                GET
-                            </p>
-                            <p className='sidebar_container_2_history_link p-0 m-0 mr-2'>
-                                https://jsonplaceholder.typicode.com/posts/1/comments
-                            </p>
-                        </div>
-                        <div className='sidebar_container_2_history d-flex ml-4 mt-2'>
-                            <p className='m-0 p-0 mr-1 text-success'>
-                                GET
-                            </p>
-                            <p className='sidebar_container_2_history_link p-0 m-0 mr-2'>
-                                https://jsonplaceholder.typicode.com/posts/1/comments
-                            </p>
-                        </div>
-                        <div className='sidebar_container_2_history d-flex ml-4 mt-2'>
-                            <p className='m-0 p-0 mr-1 text-info'>
-                                PUT
-                            </p>
-                            <p className='sidebar_container_2_history_link p-0 m-0 mr-2'>
-                                https://jsonplaceholder.typicode.com/posts/1/comments
-                            </p>
-                        </div>
-                        <div className='sidebar_container_2_history d-flex ml-4 mt-2'>
-                            <p className='m-0 p-0 mr-1 text-danger'>
-                                DEL
-                            </p>
-                            <p className='sidebar_container_2_history_link p-0 m-0 mr-2'>
-                                https://jsonplaceholder.typicode.com/posts/1/comments
-                            </p>
-                        </div>
-                        <div className='sidebar_container_2_history d-flex ml-4 mt-2'>
-                            <p className='m-0 p-0 mr-1 text-info'>
-                                PUT
-                            </p>
-                            <p className='sidebar_container_2_history_link p-0 m-0 mr-2'>
-                                https://jsonplaceholder.typicode.com/posts/1/comments
-                            </p>
-                        </div>
-                        <div className='sidebar_container_2_history d-flex ml-4 mt-2'>
-                            <p className='m-0 p-0 mr-1 text-success'>
-                                GET
-                            </p>
-                            <p className='sidebar_container_2_history_link p-0 m-0 mr-2'>
-                                https://jsonplaceholder.typicode.com/posts/1/comments
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     )

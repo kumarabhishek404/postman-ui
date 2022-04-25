@@ -8,32 +8,56 @@ const InputLink = (props) => {
   const [response, setResponse] = useState([])
 
   useEffect(() => {
-    console.log("Data", props.data);
-  })
+    console.log("added_headers", props.added_headers);
+    addParamKey(props.paramKey)
+  }, [props.paramKey, props.added_headers])
 
-  const payload_data = { "name": "test", "salary": "123", "age": "23" }
+  const addParamKey = (key) => {
+    if (link.includes('?')) {
+      setLink(link => link.concat(`&${key}`))
+    }
+    else {
+      setLink(link => link.concat(`?${key}`))
+    }
+  }
+
+  // const setRequestTime = (time) => {
+  //   console.log("Time--", time);
+  //   if()
+  // }
+  const pre_headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
+  }
+
+  const headers = {
+    ...props.added_headers
+  }
 
   const makeGetRequest = () => {
-    console.log(method, payload_data, link);
+    console.log(method, props.body_data, link);
     switch (method) {
       case "GET":
         return axios.get(link, {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-          },
+          ...headers
         })
           .then(res => {
-            console.log("Response-", res.data)
+            console.log("Response-", headers, props.added_headers)
             props.getData(res.data)
             setResponse(res.data)
+            props.setHistory({
+              method: method,
+              link: link,
+              time: 'Today',
+              response: res.data
+            })
           })
           .catch(err => {
             console.log("Error--", err);
           })
 
       case 'POST':
-        return axios.post(link, payload_data)
+        return axios.post(link, props.body_data)
           .then((res) => {
             console.log("Response", response);
             props.getData(res.data)
@@ -87,13 +111,17 @@ const InputLink = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    data: state.data
+    data: state.data,
+    body_data: state.bodyData,
+    paramKey: state.paramKey,
+    added_headers: state.headers
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getData: (res) => dispatch({ type: 'GETRequest', payload: res })
+    getData: (res) => dispatch({ type: 'GETRequest', payload: res }),
+    setHistory: (res) => dispatch({ type: "SETHistoryList", payload: res })
   }
 }
 
