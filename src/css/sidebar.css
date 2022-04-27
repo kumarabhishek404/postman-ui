@@ -428,6 +428,9 @@ td {
     border-radius: 0px;
     padding-top: 40px;
 }
+.dropdown_container_items_auth {
+    font-size: 10px;
+}
 
 /* DROPDOWN */
 
@@ -483,6 +486,28 @@ td {
 }
 /* Body */
 
+.autherization {
+    height: 35vh;
+    border-top: 1px solid #d3cfcf;
+}
+.autherization p {
+    font-size: 10px;
+}
+.autherization_body {
+    border-left: 1px solid #d3cfcf;
+}
+.sidebar_items_section_heading {
+    font-size: 10px;
+    font-weight: bold;
+}
+.sidebar_items_section_text {
+    font-size: 10px;
+}
+.sidebar_items_section_link {
+    font-size: 9px;
+    color: #4b7fd6;
+    font-weight: bold;
+}
 
 
 /* Right Side */

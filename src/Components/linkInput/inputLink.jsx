@@ -6,18 +6,28 @@ const InputLink = (props) => {
   const [method, setMethod] = useState('GET')
   const [link, setLink] = useState('')
   const [response, setResponse] = useState([])
+  const [paraKey, setParaKey] = useState('')
+  const [resultLink, setResultLink] = useState('')
 
   useEffect(() => {
-    console.log("added_headers", props.added_headers);
+    console.log("paramKey", props.paramKey);
     addParamKey(props.paramKey)
-  }, [props.paramKey, props.added_headers])
+    console.log("paraKey", paraKey);
+    console.log("link", link);
+    console.log("Final --", `${link}${paraKey}`);
+    const finalLink = link.concat(props.paramKey)
+    setResultLink(finalLink)
+  }, [props.paramKey, props.added_headers, link])
 
   const addParamKey = (key) => {
+
     if (link.includes('?')) {
-      setLink(link => link.concat(`&${key}`))
+      setParaKey(props.paramKey)
+      // setLink(link.concat(`&${props.paramKey}`))
     }
     else {
-      setLink(link => link.concat(`?${key}`))
+      // setLink(link => link.concat(`?${key}`))
+      setParaKey(props.paramKey)
     }
   }
 
@@ -34,32 +44,33 @@ const InputLink = (props) => {
     ...props.added_headers
   }
 
+
   const makeGetRequest = () => {
-    console.log(method, props.body_data, link);
+    const date = new Date()
     switch (method) {
       case "GET":
         return axios.get(link, {
           ...headers
         })
           .then(res => {
-            console.log("Response-", headers, props.added_headers)
             props.getData(res.data)
             setResponse(res.data)
             props.setHistory({
-              method: method,
-              link: link,
-              time: 'Today',
-              response: res.data
+              time: `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}`,
+              history: [
+                { method: method, link: link, response: res.data }
+              ]
             })
           })
           .catch(err => {
             console.log("Error--", err);
           })
+        break
 
       case 'POST':
         return axios.post(link, props.body_data)
           .then((res) => {
-            console.log("Response", response);
+            // console.log("Response", response);
             props.getData(res.data)
             setResponse(res.data)
           })
@@ -89,8 +100,9 @@ const InputLink = (props) => {
             <option className='dropdown_container_items' name="post">POST</option>
           </select>
         </div>
+        {/* <p>{props.paramKey}</p> */}
         <div className='body_box_mid_1_input w-100 mr-2'>
-          <input className='w-100' value={link} onChange={handleLinkChange} />
+          <input className='w-100' value={resultLink} onChange={handleLinkChange} />
         </div>
       </div>
       <div className='body_box_mid_1_button mr-1'>

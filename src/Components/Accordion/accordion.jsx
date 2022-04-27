@@ -6,6 +6,11 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const AccordionComp = (props) => {
+
+  // React.useEffect(() => {
+  //   console.log("props.items-", props);
+  // }, [props])
+
   return (
     <div>
       <Accordion sx={{
@@ -24,7 +29,7 @@ const AccordionComp = (props) => {
         </AccordionSummary>
         <AccordionDetails  sx={{margin: '0px', padding: '0px'}}>
           {
-            props.items.map((item, index) => {
+            props.items?.map((item, index) => {
               return <Typography>
                 <div className='sidebar_container_2_history d-flex ml-4 mt-2'>
                   <p className='m-0 p-0 mr-1 text-success'>

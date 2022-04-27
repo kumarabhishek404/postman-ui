@@ -64,7 +64,7 @@ const ResponseTabs = (props) => {
 
     const handleBodyData = (e) => {
         const data = e.target.value
-        console.log("Data", data);
+        // console.log("Data", data);
     }
 
     return (

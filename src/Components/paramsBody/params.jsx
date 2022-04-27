@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Backdrop from '../backdrop/backdrop';
 import { connect } from 'react-redux'
+import Select from '../select/select';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -49,34 +50,43 @@ const BasicTabs = (props) => {
     const [headersKey, setHeadersKey] = React.useState('')
     const [headersValue, setHeadersValue] = React.useState('')
     const [headersDescription, setHeadersDescription] = React.useState('')
+    const [preRequestScripts, setPreRequestScripts] = React.useState('')
+    const [tests, setTestes] = React.useState('')
+    const [method, setMethod] = React.useState('GET')
 
 
     React.useEffect(() => {
-        
-        const headerPayload = { }
-
+        const headerPayload = {}
         headerPayload[headersKey] = headersValue
         props.setHeaderPayload(headerPayload)
+        // console.log(headersKey, headersValue, headersDescription);
     })
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
     const handleBodyData = (e) => {
         const data = e.target.value
-        console.log("Data", data);
+        // console.log("Data", data);
         props.getBodyData(data)
     }
 
     const handleParamKey = (e) => {
         const key = e.target.value;
-        console.log("Param Key ", key);
+        // console.log("Param Key ", key);
         props.setParamKey(key)
     }
+
+    const handleMethodChange = (e) => {
+        const value = e.target.value
+        setMethod(value)
+      }
 
     const handleHeader = (e) => {
         const name = e.target.name;
         const value = e.target.value;
+        
         switch (name) {
             case "headersKey":
                 setHeadersKey(value)
@@ -96,7 +106,7 @@ const BasicTabs = (props) => {
     }
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: '100%', padding: '0px' }}>
             <Box sx={{}}>
                 <Tabs sx={{}} value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab sx={{
@@ -127,13 +137,6 @@ const BasicTabs = (props) => {
                         minWidth: '0px',
                         margin: '0 8px'
                     }} label="Body" {...a11yProps(4)} />
-                    <Tab sx={{
-                        fontSize: '10px',
-                        padding: '0px',
-                        textTransform: 'capitalize',
-                        minWidth: '0px',
-                        margin: '0 8px'
-                    }} label="Headers" {...a11yProps(5)} />
                     <Tab sx={{
                         fontSize: '10px',
                         padding: '0px',
@@ -198,8 +201,34 @@ const BasicTabs = (props) => {
                 </div>
                 {/* <Backdrop /> */}
             </TabPanel>
-            <TabPanel value={value} index={1}>
-                Item Two
+            <TabPanel value={value} index={1} sx={{ padding: 0 }}>
+                <div className='autherization d-flex'>
+                    <div className='w-25 p-2 d-flex justify-content-between'>
+                        <p className='p-0 m-0 pl-2 pt-2'>Type</p>
+                        {/* <div> */}
+                            {/* <Select /> */}
+                            <div className='w-50 p-2'>
+                                <select value={method} onChange={handleMethodChange} className='dropdown_container p-2'>
+                                    <option className='dropdown_container_items_auth' name="get">Inherit auth from parent</option>
+                                    <option className='dropdown_container_items_auth' name="post">No Auth</option>
+                                    <option className='dropdown_container_items_auth' name="post">API Key</option>
+                                    <option className='dropdown_container_items_auth' name="post">Bearer Token</option>
+                                    <option className='dropdown_container_items_auth' name="post">Basic Auth</option>
+                                    <option className='dropdown_container_items_auth' name="post">Digest Auth</option>
+                                    <option className='dropdown_container_items_auth' name="post">OAuth 1.0</option>
+                                    <option className='dropdown_container_items_auth' name="post">OAuth 2.0</option>
+                                    <option className='dropdown_container_items_auth' name="post">Hawk Authentication</option>
+                                    <option className='dropdown_container_items_auth' name="post">AWS Signature</option>
+                                    <option className='dropdown_container_items_auth' name="post">NTLM Authentication [Beta]</option>
+                                    <option className='dropdown_container_items_auth' name="post">Akamai EdgeGrid</option>
+                                </select>
+                            </div>
+                        {/* </div> */}
+                    </div>
+                    <div className='autherization_body p-2 w-75'>
+
+                    </div>
+                </div>
             </TabPanel>
             <TabPanel value={value} index={2}>
                 <div className='body_box_mid_3 d-flex justify-content-between'>
@@ -246,6 +275,16 @@ const BasicTabs = (props) => {
                     <textarea className='w-100 api_body_input' onChange={handleBodyData} value={body_data} rows={10} />
                 </div>
             </TabPanel>
+            <TabPanel value={value} index={4}>
+                <div className='border p-2'>
+                    <textarea className='w-100 api_body_input' onChange={handleBodyData} value={preRequestScripts} rows={10} />
+                </div>
+            </TabPanel>
+            <TabPanel value={value} index={5}>
+                <div className='border p-2'>
+                    <textarea className='w-100 api_body_input' onChange={handleBodyData} value={tests} rows={10} />
+                </div>
+            </TabPanel>
             <style jsx>
                 {`
                 .css-19kzrtu {
@@ -261,7 +300,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getBodyData: (res) => dispatch({ type: "GETBodyData", payload: res }),
         setParamKey: (res) => dispatch({ type: "SETParamKey", payload: res }),
-        setHeaderPayload: (res) => dispatch({type: "SETHeadersPayload", payload: res})
+        setHeaderPayload: (res) => dispatch({ type: "SETHeadersPayload", payload: res })
     }
 }
 

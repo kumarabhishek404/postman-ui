@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import BodyParams from '../paramsBody/params';
 import ResponseTabs from '../responseTabs/responsetabs';
 import CloseIcon from '@mui/icons-material/Close';
+// import Dropdown from '../dropdownInput/dropdown';
 
 const Body = (props) => {
   const [historyTab, setHistoryTab] = useState([{
@@ -16,13 +17,13 @@ const Body = (props) => {
     link: 'https://jsonplaceholder.typicode.com/posts/1/comments'
   }])
 
-  useEffect(() => {
-    // setResData(props.data)
-    console.log("historyTab", historyTab);
-  }, [historyTab])
+  // useEffect(() => {
+  //   // setResData(props.data)
+  //   console.log("historyTab", historyTab);
+  // }, [historyTab])
 
   const handleNewTab = () => {
-    console.log("New tab created");
+    // console.log("New tab created");
     const new_record = {
       method: 'GET',
       link: 'https://jsonplaceholder.typicode.com/posts/1/comments'
@@ -32,11 +33,31 @@ const Body = (props) => {
   }
 
   const handleDeleteTab = (index) => {
-    console.log("Index - ", index)
-    historyTab.splice(index,1);
+    // console.log("Index - ", index)
+    historyTab.splice(index, 1);
     // setHistoryTab(...historyTab)
     // setHistoryTab(historyTab => [...historyTab, new_array])
-    console.log('new_array', historyTab);
+    // console.log('new_array', historyTab);
+  }
+
+
+  const saveFile = async (blob) => {
+    const a = document.createElement('a');
+    a.download = 'newfile.json';
+    a.href = URL.createObjectURL(blob);
+    a.addEventListener('click', (e) => {
+      setTimeout(() => URL.revokeObjectURL(a.href), 30 * 1000);
+    });
+    a.click();
+  };
+
+  const handleSaveAsFile = async () => {
+
+    // console.log("Saved", props.data);
+
+    // const obj = { hello: 'world' };
+    const blob = new Blob([JSON.stringify(props.data, null, 2)], { type: 'application/json' });
+    saveFile(blob)
   }
 
   return (
@@ -52,7 +73,7 @@ const Body = (props) => {
                     <p className='p-0 m-0 ml-1'>{history.link}</p>
                   </div>
                   <p className='body_container_1_box_1_1_delete m-0 p-0 d-flex justify-content-center align-items-center' onClick={() => handleDeleteTab(index)}>
-                    <CloseIcon sx={{  fontSize: '10px', marginLeft: '10px' }} />
+                    <CloseIcon sx={{ fontSize: '10px', marginLeft: '10px' }} />
                   </p>
                 </>
               )
@@ -154,7 +175,10 @@ const Body = (props) => {
 
                 </div>
                 <p className='body_box_lower_1_tabs_item'>
-                  <span>Save Response</span>
+                  {/* <Dropdown /> */}
+                  {/* <div onClick={() => saveFile(blob)}> save file </div> */}
+
+                  <span onClick={() => handleSaveAsFile()}>Save Response</span>
                   <span>
                     <i class="IconWrapper__IconContainer-r96cto-0 gJkKrF dropdown-caret" title=""><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.00004 9.29294L4.35359 5.64649L3.64648 6.3536L8.00004 10.7072L12.3536 6.3536L11.6465 5.64649L8.00004 9.29294Z" fill="#0000ff"></path></svg></i>
                   </span>
